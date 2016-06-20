@@ -1,5 +1,6 @@
-#include <iostream>
+#include "obj.h"
 
+#include <iostream>
 
 void used_func()
 {
@@ -15,5 +16,10 @@ int main()
 {
     std::cout << "main()";
     used_func();
+
+    obj o;
+    o.used();
+    o.inlineUsed();
+
     return 0;
 }

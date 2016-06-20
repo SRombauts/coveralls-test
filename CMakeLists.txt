@@ -16,7 +16,7 @@ if (NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
 endif ()
 
 # build the test app
-add_executable(coveralls-test src/main.cpp)
+add_executable(coveralls-test src/main.cpp src/obj.cpp src/obj.h)
 
 # add a "test" target:
 enable_testing()
