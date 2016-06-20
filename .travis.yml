@@ -1,0 +1,28 @@
+# Copyright (c) 2016 Sebastien Rombauts (sebastien.rombauts@gmail.com)
+
+language: cpp
+
+compiler:
+  - gcc
+
+# request for Ubuntu 14.04 Trusty VM
+sudo: true
+dist: trusty
+
+before_install:
+  - pip install --user cpp-coveralls
+
+# scripts to run before build
+before_script:
+  - mkdir build
+  - cd build
+  - cmake -DCMAKE_BUILD_TYPE=Debug ..
+
+# build examples, and run tests (ie make & make test)
+script:
+  - cmake --build . && ctest --output-on-failure
+
+# publish GCov coveralls results
+after_success:
+  - coveralls --root .. --verbose --exclude-pattern ".*feature_tests.*" --exclude-pattern ".*CompilerId.*" --gcov-options '\-lp'
+
