@@ -18,11 +18,12 @@ before_script:
   - cd build
   - cmake -DCMAKE_BUILD_TYPE=Debug ..
 
-# build examples, and run tests (ie make & make test)
+# build and run tests (ie make & make test)
 script:
-  - cmake --build . && ctest --output-on-failure
+  - cmake --build .
+  - ctest --verbose --output-on-failure
 
-# publish GCov coveralls results
+# generate and publish GCov coveralls results
 after_success:
   - coveralls --root .. --verbose --exclude-pattern ".*feature_tests.*" --exclude-pattern ".*CompilerId.*" --gcov-options '\-lp'
 
